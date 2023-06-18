@@ -1,0 +1,41 @@
+#WHERE statment
+# =, <>, <, >, And, Or, Like, Null, Not Null, In, */
+
+SELECT *
+FROM Alex_the_analyst.EmployeeDemographics
+WHERE FirstName = 'Scott'
+
+# Not equal function is <>
+SELECT *
+FROM EmployeeDemographics
+WHERE FirstName <> 'Scott'
+
+# > & < function
+SELECT *
+FROM EmployeeDemographics
+WHERE Age >= 30
+
+# AND function
+SELECT *
+FROM EmployeeDemographics
+WHERE Age >= 30 AND Gender = 'Male'
+
+# OR function
+SELECT *
+FROM EmployeeDemographics
+WHERE Age >= 30 OR Gender = 'Female'
+
+#Wildcards in Sql
+# Like function. Searching for specified patterns in a column. The percentage sign represents zero, one or multiple characters
+SELECT * 
+FROM EmployeeDemographics
+WHERE LastName LIKE 'M%A%'
+
+SELECT * 
+FROM EmployeeDemographics
+WHERE LastName LIKE '%M%'
+
+#IN function is like equal statement but for multiple equal statements
+SELECT *
+FROM EmployeeDemographics
+WHERE FirstName IN ('Tyson', 'Anthony', 'Jim')
