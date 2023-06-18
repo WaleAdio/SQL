@@ -1,0 +1,49 @@
+CREATE TABLE EmployeeDemographics(
+EmployeeID INT,
+FirstName VARCHAR (50),
+LastName VARCHAR (50),
+Age INT,
+Gender VARCHAR (50)
+)
+
+CREATE TABLE EmployeeSalary(
+EmployeeID INT,
+JobTitle VARCHAR (50),
+Salary INT
+)
+
+INSERT INTO EmployeeDemographics
+VALUES
+(1000, 'Jim', 'Herbert', 30, 'Male')
+(1001, 'David', 'James', 22, 'Male')
+(1002, 'Molly', 'May', 24, 'Female')
+(1002, 'Anthony', 'Joshua', 31, 'Male'),
+(1004, 'Tyson' 'Fury', 38, 'Male'),
+(1005, 'Cara', 'Fringe', 43, 'Female'),
+(1006, 'Kady', 'Mcdermonth', 21, 'Female'),
+(1007, 'Scott', 'Mctominay', 27, 'Male'),
+(1008, 'Jessy', 'Quick', 19, 'Female'),
+(1009, 'Wally', 'West', 20, 'Male'),
+(1010, 'Iris', 'West', 29, 'Female');
+
+#Mistake made when inserting EmployeeDemographics data. Update function to fix error.
+UPDATE EmployeeDemographics
+SET EmployeeID = 1003
+WHERE FirstName = 'Anthony';
+
+#SQL in safe mode, to unlock safe mode.
+SET SQL_SAFE_UPDATES = 0;
+
+INSERT INTO EmployeeSalary
+VALUES
+(1000, 'Fireman', 43000),
+(1001, 'Boxer', 60000),
+(1002, 'Salesperson', 55000),
+(1003, 'Artist', 100000),
+(1004, 'Musician', 70000),
+(1005, 'Retailer', 80000),
+(1006, 'Accountant', 75000),
+(1007, 'Accountant', 80000),
+(1008, 'Boxer', 90000),
+(1009, 'Artist', 45000),
+(1010, 'Fireman', 50000);
