@@ -1,0 +1,6 @@
+#Getting data from different databases/schemas. That is choosing the database and table to be used
+SELECT * 
+FROM myDB.employees
+
+SELECT *
+FROM trail.airports
