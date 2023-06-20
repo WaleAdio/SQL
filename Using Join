@@ -1,0 +1,47 @@
+# Join statement
+# Inner joins, Full/Left/Right outer joins
+
+# Join/Innner Join
+SELECT * 
+FROM EmployeeDemographics
+JOIN EmployeeSalary
+ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+# Full Outer Join
+SELECT * 
+FROM EmployeeDemographics
+FULL OUTER JOIN EmployeeSalary
+ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+# Upon research, MYSQL doesn't support "Full Outer Join". In order to do a Full Outer Join, a combination of Left & Right Join would be needed
+SELECT * 
+FROM EmployeeDemographics
+LEFT JOIN EmployeeSalary ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+UNION ALL
+SELECT * 
+FROM EmployeeDemographics
+RIGHT JOIN EmployeeSalary ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+# The query above will returns data based on the JOIN EmployeeID, without returning any duplicates. 
+
+# The query below query will return duplicate rows
+SELECT * 
+FROM EmployeeDemographics
+LEFT JOIN EmployeeSalary ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+UNION ALL
+SELECT * 
+FROM EmployeeDemographics
+RIGHT JOIN EmployeeSalary ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+WHERE EmployeeDemographics.EmployeeID IS NULL
+
+# Left Join
+SELECT * 
+FROM EmployeeDemographics
+LEFT JOIN EmployeeSalary
+ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+
+# Right Join
+SELECT * 
+FROM EmployeeDemographics
+RIGHT JOIN EmployeeSalary
+ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
