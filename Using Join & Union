@@ -14,6 +14,8 @@ FULL OUTER JOIN EmployeeSalary
 ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
 
 # Upon research, MYSQL doesn't support "Full Outer Join". In order to do a Full Outer Join, a combination of Left & Right Join would be needed
+
+#Difference between Join & Union. Join merges tables based on a common column. Union lets you select all data in both tables and put it into one output.
 SELECT * 
 FROM EmployeeDemographics
 LEFT JOIN EmployeeSalary ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
