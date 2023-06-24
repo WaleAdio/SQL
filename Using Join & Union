@@ -15,7 +15,7 @@ ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
 
 # Upon research, MYSQL doesn't support "Full Outer Join". In order to do a Full Outer Join, a combination of Left & Right Join would be needed
 
-#Difference between Join & Union. Join merges tables based on a common column. Union lets you select all data in both tables and put it into one output.
+# The query below will returns data based on the JOIN EmployeeID, without returning any duplicates. 
 SELECT * 
 FROM EmployeeDemographics
 LEFT JOIN EmployeeSalary ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
@@ -23,9 +23,9 @@ UNION ALL
 SELECT * 
 FROM EmployeeDemographics
 RIGHT JOIN EmployeeSalary ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
-# The query above will returns data based on the JOIN EmployeeID, without returning any duplicates. 
 
-# The query below query will return duplicate rows
+
+# The query below using will return duplicate rows
 SELECT * 
 FROM EmployeeDemographics
 LEFT JOIN EmployeeSalary ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
@@ -47,3 +47,18 @@ SELECT *
 FROM EmployeeDemographics
 RIGHT JOIN EmployeeSalary
 ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+
+#Difference between Join & Union. Join merges tables based on a common column. Union lets you select all data in both tables and put it into one output.
+# Union combines data in both tables, while removing duplicates.
+SELECT * 
+FROM EmployeeDemographics
+UNION
+SELECT * 
+FROM WareHouseEmployeeDemographics
+
+# Union All combines data from both tables while still showing duplicates.
+SELECT * 
+FROM EmployeeDemographics
+UNION ALL
+SELECT * 
+FROM WareHouseEmployeeDemographics
