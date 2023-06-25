@@ -3,7 +3,7 @@
 
 SELECT *
 FROM EmployeeDemographics
-
+----------------------------------------------------------------------------------
 # Top function, say top 3.
 SELECT TOP 3 *
 FROM EmployeeDemographics
@@ -12,20 +12,20 @@ FROM EmployeeDemographics
 SELECT *
 FROM EmployeeDemographics
 LIMIT 3
-
+----------------------------------------------------------------------------------
 # Distinct function. Used to get unique values in a specific column
 SELECT DISTINCT (LastName)
 FROM EmployeeDemographics
-
+----------------------------------------------------------------------------------
 #Count function. Returns non-null values in a column. 
 SELECT COUNT(FirstName)
 FROM EmployeeDemographics
 #Note; for COUNT to work, no space between function & parenthesis
-
+----------------------------------------------------------------------------------
 #As function. Used to rename a column in a table
 SELECT COUNT(FirstName) AS LastnameCount
 FROM EmployeeDemographics
-
+----------------------------------------------------------------------------------
 SELECT *
 FROM EmployeeSalary
 
