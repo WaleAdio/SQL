@@ -1,0 +1,110 @@
+# Case statements
+# Allows to specify conditions & specify what is returned when the condition is met
+
+# Use END to specify end of CASE statement
+SELECT FirstName, LastName, Age,
+CASE
+	WHEN Age > 30 THEN 'Old'
+    ELSE 'Young'
+END
+FROM EmployeeDemographics
+WHERE Age is NOT NULL
+ORDER BY Age
+
+SELECT FirstName, LastName, Age,
+CASE
+	WHEN Age > 30 THEN 'Old'
+    WHEN Age BETWEEN 25 AND 30 THEN 'Young'
+    ELSE 'Baby'
+END
+FROM EmployeeDemographics
+WHERE Age is NOT NULL
+ORDER BY Age
+
+SELECT *
+FROM EmployeeDemographics
+JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+    
+    
+SELECT FirstName, LastName, JobTitle, Salary,
+CASE
+	WHEN JobTitle = 'Artist' THEN Salary + (Salary * .10)
+    WHEN JobTitle = 'Accountant' THEN Salary + (Salary * 0.05)
+    WHEN JobTitle = 'Retailer' THEN Salary + (Salary * 0.01)
+    ELSE Salary + (Salary * 0.0005)
+END AS SalaryAfterRaise
+FROM EmployeeDemographics
+JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+---------------------------------------------------------------------------------------------------------------------------
+# Having clause, allows for filtering of aggregated results produced by GROUP BY clause.
+# The statement needs to go after the GROUP BY clause in order for it to aggregate the results
+
+SELECT JobTitle, COUNT(JobTitle)
+FROM EmployeeDemographics
+JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+GROUP BY JobTitle
+
+SELECT JobTitle, COUNT(JobTitle)
+FROM EmployeeDemographics
+JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+GROUP BY JobTitle
+HAVING COUNT(JobTitle) > 1
+
+SELECT JobTitle, AVG(Salary)
+FROM EmployeeDemographics
+JOIN EmployeeSalary
+	ON EmployeeDemographics.EmployeeID = EmployeeSalary.EmployeeID
+GROUP BY JobTitle
+HAVING AVG(Salary) > 72500
+ORDER BY AVG(Salary)
+----------------------------------------------------------------------------------------------------------------------------
+# Updating & Deleting Data
+
+UPDATE EmployeeDemographics
+SET EmployeeID = 1012
+WHERE FirstName = 'Holly' AND LastName = 'Fax'
+
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE EmployeeDemographics
+SET Age = 27, Gender = 'Female'
+WHERE FirstName = 'Holly' AND LastName = 'Fax'
+
+# Deleting Data
+DELETE FROM EmployeeDemographics
+WHERE EmployeeID = 1013
+----------------------------------------------------------------------------------------------------------------------------
+# Aliasing
+# Temporarily changing a column/table name
+
+SELECT * 
+FROM EmployeeDemographics
+# Aliasing column names
+SELECT FirstName AS Fname
+FROM EMployeeDemographics
+
+# CONCAT to merge columns
+SELECT CONCAT (FirstName, ' ', LastName) AS FullName
+FROM EmployeeDemographics
+
+SELECT AVG(Age) AvgAge
+FROM EmployeeDemographics
+
+# Aliasing table names
+SELECT Demo.EmployeeID, Sal.Salary
+FROM EmployeeDemographics AS Demo
+JOIN EmployeeSalary AS Sal 
+	ON Demo.EmployeeID = Sal.EmployeeID
+------------------------------------------------------------------------------------------------------------------------------
+# Partition By
+# Does not affect the number of rows returned, but it changes how a window function's result is calculated
+
+SELECT FirstName, LastName, Gender, Salary,
+COUNT(Gender) OVER (PARTITION BY Gender) AS TotalGender
+FROM EmployeeDemographics AS Demo
+JOIN EmployeeSalary AS Sal 
+	ON Demo.EmployeeID = Sal.EmployeeID
