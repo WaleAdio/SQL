@@ -108,3 +108,11 @@ COUNT(Gender) OVER (PARTITION BY Gender) AS TotalGender
 FROM EmployeeDemographics AS Demo
 JOIN EmployeeSalary AS Sal 
 	ON Demo.EmployeeID = Sal.EmployeeID
+
+SELECT FirstName, LastName, Gender, Salary,
+COUNT(Gender) OVER (PARTITION BY Gender) AS TotalGender,
+AVG(Salary) OVER (PARTITION BY Gender) AS AvgSalary
+FROM EmployeeDemographics AS Demo
+JOIN EmployeeSalary AS Sal 
+	ON Demo.EmployeeID = Sal.EmployeeID
+WHERE AVG(Salary) > 72500
