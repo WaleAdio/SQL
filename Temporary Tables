@@ -1,0 +1,29 @@
+# Temp named results that can be referenced
+CREATE TEMPORARY TABLE temp_Employee (
+EmployeeID INT, 
+JobTitle VARCHAR(100),
+Salary INT
+)
+
+SELECT * 
+FROM temp_Employee
+
+INSERT INTO temp_Employee
+VALUES
+(1001, 'Artisan', 20000),
+(1002, 'Fighter', 35000),
+(1003, 'Baptist', 40000);
+
+# Getting data from an existing table and inserting into the temp table
+INSERT INTO temp_Employee
+SELECT * 
+FROM EmployeeSalary
+
+
+CREATE TEMPORARY TABLE temp_Employee2 (
+JobTitle VARCHAR(50),
+EmployeesPerJob INT, 
+AvgAge INT,
+AvgSalary INT
+)
+---------------------------------------------------------------------------------------------------------
