@@ -1,3 +1,51 @@
 # Stored Procedures
 A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again
+Reduces network traffic, increases performance 
+
+DELIMITER //
+CREATE PROCEDURE get_EmpDemo()
+BEGIN
+	SELECT * FROM EmployeeDemographics;
+END //
+DELIMITER //
+
+DELIMITER //
+CREATE PROCEDURE Test()
+BEGIN
+	SELECT * FROM EmployeeSalary;
+END //
+DELIMITER //
+-----------------------------------------------------------------------------------------------------------------
+# Executing stored procedures
+
+CALL Test();
+-----------------------------------------------------------------------------------------------------------------
+# Dropping procedure
+
+DROP PROCEDURE get_EmpDemo;
+------------------------------------------------------------------------------------------------------------------
+# Sending procedure a piece of data
+
+DELIMITER //
+CREATE PROCEDURE find_employee(IN id INT)
+BEGIN
+	SELECT * 
+    FROM EmployeeDemographics
+    WHERE EmployeeID = id;
+END //
+DELIMITER //
+
+CALL find_employee(1008);
+
+DELIMITER //
+CREATE PROCEDURE find_employees(IN f_name VARCHAR(50), 
+								IN l_name VARCHAR(50))
+BEGIN
+	SELECT *
+    FROM EMployeeDemographics
+    WHERE FirstName = f_name AND LastName = l_name;
+END //
+DELIMITER //
+
+CALL find_employees("Anthony", "May")
 
