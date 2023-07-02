@@ -27,3 +27,19 @@ AvgAge INT,
 AvgSalary INT
 )
 ---------------------------------------------------------------------------------------------------------
+
+# Subquery in SELECT
+SELECT EmployeeID, Salary, (SELECT AVG(SALARY) FROM EmployeeSalary) AS Average_Salary
+FROM EmployeeSalary
+
+# Subquery in PARTITION BY
+SELECT EmployeeID, Salary, AVG(SALARY) OVER() AS Average_Salary
+FROM EmployeeSalary
+
+# Subquery in WHERE
+SELECT EmployeeID, JobTitle, Salary
+FROM EmployeeSalary
+WHERE EmployeeID IN (
+	SELECT EmployeeID
+    FROM EmployeeDemographics
+    WHERE Age > 30)
