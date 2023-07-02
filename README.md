@@ -1,2 +1,1 @@
-# SQL
-Documenting code relating to SQL
+Documenting code relating to MySQL
