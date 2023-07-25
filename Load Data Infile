@@ -1,0 +1,52 @@
+CREATE DATABASE HousingProject
+
+SELECT * 
+FROM housingnashville
+
+DROP TABLE Nashvillehousing
+
+SHOW VARIABLES LIKE 'sql_mode'
+SET sql_mode = ' '
+
+SHOW VARIABLES LIKE 'sql_mode'
+
+DROP TABLE nashvillehousing2
+
+CREATE TABLE NashvilleHousing (
+UniqueID INT,
+ParcelID VARCHAR(250),
+LandUse VARCHAR(250),
+PropertyAddress VARCHAR(250),
+SaleDate VARCHAR(250),
+SalePrice INT,
+LegalReference VARCHAR(250),
+OwnerName VARCHAR(250),
+OwnerAddress VARCHAR(250),
+Acreage FLOAT,
+TaxDistrict VARCHAR(250),
+LandValue INT,
+BuildingValue INT,
+TotalValue INT,
+YearBuilt INT,
+Bedrooms INT,
+FullBath INT,
+HalfBath INT
+);
+
+LOAD DATA LOCAL INFILE
+'/Users/Wale/Downloads/Projects/Housing'
+INTO TABLE NashvilleHousing
+FIELDS TERMINATED BY ','
+IGNORE 1 ROWS;
+
+SHOW VARIABLES LIKE "secure_file_priv"
+SHOW VARIABLES LIKE "local_infile"
+
+SET GLOBAL local_infile = true
+
+SET GLOBAL local_infile = false
+
+SHOW GLOBAL VARIABLES LIKE 'local_infile'
+
+SET GLOBAL local_infile = 'ON'
+
